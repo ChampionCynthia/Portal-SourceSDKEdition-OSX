@@ -1,0 +1,42 @@
+"GameInfo"
+{
+	game 		"Portal: Source SDK Edition"
+	title 		"HALF-LIFE'"
+	supportsvr	1
+	type		singleplayer_only
+	hasportals	1
+	FileSystem
+	{
+		SteamAppId				243730
+		SearchPaths
+		{
+			game+mod			|gameinfo_path|custom/*
+			game+mod+mod_write+default_write_path		|gameinfo_path|.
+			gamebin				|gameinfo_path|bin
+			game				|gameinfo_path|.
+			game				"|all_source_engine_paths|../Portal/Portal/Portal_pak.vpk"
+			game				"|all_source_engine_paths|../Portal/Portal"
+			game_lv				hl2/hl2_lv.vpk
+			game+mod			ep2/ep2_english.vpk
+			game+mod			ep2/ep2_pak.vpk
+			game				|all_source_engine_paths|ep2/ep2_pak.vpk
+			game				|all_source_engine_paths|episodic/ep1_english.vpk
+			game				|all_source_engine_paths|episodic/ep1_pak.vpk
+			game				|all_source_engine_paths|sourcetest/sourcetest_pak.vpk
+			game				|all_source_engine_paths|hl2/hl2_english.vpk
+			game				|all_source_engine_paths|hl2/hl2_pak.vpk
+			game				|all_source_engine_paths|hl2/hl2_textures.vpk
+			game				|all_source_engine_paths|hl2/hl2_sound_vo_english.vpk
+			game				|all_source_engine_paths|hl2/hl2_sound_misc.vpk
+			game				|all_source_engine_paths|hl2/hl2_misc.vpk
+			platform			|all_source_engine_paths|platform/platform_misc.vpk
+			game+game_write		ep2
+			gamebin				episodic/bin
+			game				|all_source_engine_paths|episodic
+			game				|all_source_engine_paths|sourcetest
+			game				|all_source_engine_paths|hl2
+			platform			|all_source_engine_paths|platform
+			game                "|all_source_engine_paths|../Half-Life 2\hl2"
+		}
+	}
+}
