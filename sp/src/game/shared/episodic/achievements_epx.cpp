@@ -14,7 +14,9 @@
 
 #include "basegrenade_shared.h"
 
+#ifndef PORTAL
 CAchievementMgr g_AchievementMgrEpisodic;	// global achievement mgr for episodic
+#endif
 
 class CAchievementEpXGetZombineGrenade : public CBaseAchievement
 {

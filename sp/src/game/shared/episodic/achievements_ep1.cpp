@@ -76,7 +76,7 @@ protected:
 };
 DECLARE_ACHIEVEMENT( CAchievementEp1BeatCitizenEscortNoCitizenDeaths, ACHIEVEMENT_EP1_BEAT_CITIZENESCORT_NOCITIZENDEATHS, "EP1_BEAT_CITIZENESCORT_NOCITIZENDEATHS", 15 );
 
-extern int CalcPlayerAttacks( bool bBulletOnly );
+//extern int CalcPlayerAttacks( bool bBulletOnly );
 
 class CAchievementEp1BeatGameOneBullet : public CFailableAchievement
 {
@@ -93,12 +93,11 @@ protected:
 	virtual void OnEvaluationEvent()
 	{
 		// get # of attacks w/bullet weapons
-		int iBulletAttackCount = CalcPlayerAttacks( true );
+		//int iBulletAttackCount = CalcPlayerAttacks( true );
 		// if more than 1 bullet fired, fail
-		if ( iBulletAttackCount > 1 )
-		{
-			SetFailed();
-		}
+		//if ( iBulletAttackCount > 1 )
+		//{
+		//}
 		BaseClass::OnEvaluationEvent();
 	}
 
@@ -112,7 +111,7 @@ protected:
 	{
 		if ( m_bActivated )
 		{
-			Msg( "Player bullet attacks: %d\n", CalcPlayerAttacks( true ) );
+			Msg( "Player bullet attacks: (Missing String)", ( true ) );
 		}
 	}
 };

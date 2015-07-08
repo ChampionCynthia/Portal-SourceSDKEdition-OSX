@@ -1,1 +1,2 @@
-devtools\bin\vpc.exe /hl2 /episodic +game /mksln games.sln
+devtools\bin\vpc.exe /episodic /2013 +game /mksln game_portal.sln
+pause
