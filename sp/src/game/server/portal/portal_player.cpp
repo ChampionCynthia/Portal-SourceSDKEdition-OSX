@@ -210,7 +210,11 @@ BEGIN_DATADESC( CPortal_Player )
 
 END_DATADESC()
 
+//PortalMod: Remember to set sv_regeneration in code! Replace that 1 with a zero if you want Regen in your mod
+ConVar sv_regeneration("sv_regeneration", "0", FCVAR_REPLICATED | FCVAR_CHEAT);
 ConVar sv_regeneration_wait_time ("sv_regeneration_wait_time", "1.0", FCVAR_REPLICATED );
+ConVar sv_regeneration_rate("sv_regeneration_rate", "0.5", FCVAR_REPLICATED);
+ConVar sv_regeneration_type("sv_regeneration_type", "0", FCVAR_REPLICATED | FCVAR_CHEAT); //PortalMod: If regen is enabled, this set to 0 will have Ultra fast regen (portal style) and if 1 normal regen style
 
 const char *g_pszChellModel = "models/player/chell.mdl";
 const char *g_pszPlayerModel = g_pszChellModel;
@@ -223,6 +227,8 @@ const char *g_pszPlayerModel = g_pszChellModel;
 #define PORTALPLAYER_PHYSDAMAGE_SCALE 4.0f
 
 extern ConVar sv_turbophysics;
+
+float     m_fRegenRemander;
 
 //----------------------------------------------------
 // Player Physics Shadow
@@ -264,6 +270,7 @@ CPortal_Player::CPortal_Player()
 	m_iszExpressionScene = NULL_STRING;
 	m_hExpressionSceneEnt = NULL;
 	m_flExpressionLoopTime = 0.0f;
+	m_fRegenRemander = 0;
 }
 
 CPortal_Player::~CPortal_Player( void )
@@ -622,12 +629,12 @@ void CPortal_Player::PostThink( void )
 	SetLocalAngles( angles );
 
 	// Regenerate heath after 3 seconds
-	if ( IsAlive() && GetHealth() < GetMaxHealth() )
+	if (IsAlive() && GetHealth() < GetMaxHealth() && (sv_regeneration.GetInt() == 1) )
 	{
 		// Color to overlay on the screen while the player is taking damage
 		color32 hurtScreenOverlay = {64,0,0,64};
 
-		if ( gpGlobals->curtime > m_fTimeLastHurt + sv_regeneration_wait_time.GetFloat() )
+		if (gpGlobals->curtime > m_fTimeLastHurt + sv_regeneration_wait_time.GetFloat() && (sv_regeneration_type.GetInt() == 0))
 		{
 			TakeHealth( 1, DMG_GENERIC );
 			m_bIsRegenerating = true;
@@ -635,6 +642,17 @@ void CPortal_Player::PostThink( void )
 			if ( GetHealth() >= GetMaxHealth() )
 			{
 				m_bIsRegenerating = false;
+			}
+		}
+		else if (gpGlobals->curtime > m_fTimeLastHurt + sv_regeneration_wait_time.GetFloat() && (sv_regeneration_type.GetInt() == 1))
+		{
+			//Regenerate based on rate, and scale it by the frametime
+			m_fRegenRemander += sv_regeneration_rate.GetFloat() * gpGlobals->frametime;
+
+			if (m_fRegenRemander >= 1)
+			{
+				TakeHealth(m_fRegenRemander, DMG_GENERIC);
+				m_fRegenRemander = 0;
 			}
 		}
 		else
