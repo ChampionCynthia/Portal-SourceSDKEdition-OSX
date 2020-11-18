@@ -1,4 +1,4 @@
-//===== Copyright © 1996-2005, Valve Corporation, All rights reserved. ======//
+//===== Copyright ï¿½ 1996-2005, Valve Corporation, All rights reserved. ======//
 //
 // Purpose: 
 //
@@ -669,7 +669,8 @@ void CProp_Portal::RemovePortalMicAndSpeaker()
 		CEnvMicrophone *pMicrophone = (CEnvMicrophone*)(m_hMicrophone.Get());
 		if ( pMicrophone )
 		{
-			pMicrophone->InputDisable( inputdata_t() );
+			inputdata_t in = inputdata_t();
+			pMicrophone->InputDisable( in );
 			UTIL_Remove( pMicrophone );
 		}
 		m_hMicrophone = 0;
@@ -696,7 +697,8 @@ void CProp_Portal::RemovePortalMicAndSpeaker()
 					}
 				}
 			}
-			pSpeaker->InputTurnOff( inputdata_t() );
+			inputdata_t in2 = inputdata_t();
+			pSpeaker->InputTurnOff( in2 );
 			UTIL_Remove( pSpeaker );
 		}
 		m_hSpeaker = 0;
@@ -1948,11 +1950,13 @@ void CProp_Portal::UpdatePortalLinkage( void )
 			CEnvMicrophone *pMicrophone = static_cast<CEnvMicrophone*>( m_hMicrophone.Get() );
 			pMicrophone->AddSpawnFlags( SF_MICROPHONE_IGNORE_NONATTENUATED );
 			pMicrophone->Teleport( &GetAbsOrigin(), &GetAbsAngles(), &vZero );
-			pMicrophone->InputEnable( inputdata_t() );
+			inputdata_t in = inputdata_t();
+			pMicrophone->InputEnable( in );
 
 			CSpeaker *pSpeaker = static_cast<CSpeaker*>( m_hSpeaker.Get() );
 			pSpeaker->Teleport( &GetAbsOrigin(), &GetAbsAngles(), &vZero );
-			pSpeaker->InputTurnOn( inputdata_t() );
+			inputdata_t in2 = inputdata_t();
+			pSpeaker->InputTurnOn( in2 );
 
 			UpdatePortalTeleportMatrix();
 		}
@@ -2076,14 +2080,16 @@ void CProp_Portal::NewLocation( const Vector &vOrigin, const QAngle &qAngles )
 	{
 		CEnvMicrophone *pMicrophone = static_cast<CEnvMicrophone*>( m_hMicrophone.Get() );
 		pMicrophone->Teleport( &vOrigin, &qAngles, 0 );
-		pMicrophone->InputEnable( inputdata_t() );
+		inputdata_t in = inputdata_t();
+		pMicrophone->InputEnable( in );
 	}
 
 	if ( m_hSpeaker )
 	{
 		CSpeaker *pSpeaker = static_cast<CSpeaker*>( m_hSpeaker.Get() );
 		pSpeaker->Teleport( &vOrigin, &qAngles, 0 );
-		pSpeaker->InputTurnOn( inputdata_t() );
+		inputdata_t in2 = inputdata_t();
+		pSpeaker->InputTurnOn( in2 );
 	}
 
 	CreateSounds();

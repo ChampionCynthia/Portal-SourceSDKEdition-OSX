@@ -1,4 +1,4 @@
-//========= Copyright © 1996-2005, Valve Corporation, All rights reserved. ============//
+//========= Copyright ï¿½ 1996-2005, Valve Corporation, All rights reserved. ============//
 //
 // Purpose:		Player for Portal.
 //
@@ -14,7 +14,7 @@
 #include "in_buttons.h"
 #include "portal_gamerules.h"
 #include "weapon_portalgun.h"
-#include "portal\weapon_physcannon.h"
+#include "portal/weapon_physcannon.h"
 #include "KeyValues.h"
 #include "team.h"
 #include "eventqueue.h"
@@ -391,7 +391,8 @@ void CPortal_Player::GiveDefaultItems( void )
 {
 	castable_string_t st( "suit_no_sprint" );
 	GlobalEntity_SetState( st, GLOBAL_OFF );
-	InputDisableFlashlight( inputdata_t() );
+	inputdata_t in = inputdata_t();
+	InputDisableFlashlight( in );
 }
 
 
