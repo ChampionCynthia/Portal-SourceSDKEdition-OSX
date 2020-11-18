@@ -13,7 +13,7 @@ $Configuration
 {
 	$Compiler
 	{
-		$AdditionalIncludeDirectories	"$BASE;$SRCDIR\game\shared\portal;.\hl2;.\episodic;$SRCDIR\game\shared\episodic;$SRCDIR\game\shared\multiplayer;$SRCDIR\game\shared\hl2;$SRCDIR\game\shared\portal;.\portal"
+		$AdditionalIncludeDirectories	"$BASE;$SRCDIR\game\shared\portal;.\hl2;.\episodic;$SRCDIR\game\shared\episodic;$SRCDIR\game\shared\Multiplayer;$SRCDIR\game\shared\hl2;$SRCDIR\game\shared\portal;.\portal"
 		$PreprocessorDefinitions		"$BASE;PORTAL;HL2_DLL;HL2_EPISODIC;USES_SAVERESTORE"
 	}
 }

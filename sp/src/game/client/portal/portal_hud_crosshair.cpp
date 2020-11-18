@@ -12,9 +12,9 @@
 #include "c_portal_player.h"
 #include "view.h"
 #include "weapon_portalbase.h"
-#include "vgui_controls/controls.h"
+#include "vgui_controls/Controls.h"
 #include "vgui/ISurface.h"
-#include "IVRenderView.h"
+#include "ivrenderview.h"
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"

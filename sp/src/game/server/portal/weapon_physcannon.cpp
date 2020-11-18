@@ -21,7 +21,7 @@
 #include "portal_player.h"
 #include "hl2_player.h"
 #include "beam_shared.h"
-#include "sprite.h"
+#include "Sprite.h"
 #include "util.h"
 #include "portal/weapon_physcannon.h"
 #include "physics_saverestore.h"
